@@ -23,6 +23,10 @@ export class AppService {
     },
   ];
 
+  getHello(): string {
+    return 'Hello World!';
+  }
+
   getUsers(): User[] {
     return this.users;
   }

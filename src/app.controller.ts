@@ -19,11 +19,16 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @ApiTags('Users')
-@Controller('users')
+@Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+
+  @Get('users')
   @ApiResponse({
     status: 200,
     description: 'The user(s) have been retrieved successfully.',
@@ -32,7 +37,7 @@ export class AppController {
     return this.appService.getUsers();
   }
 
-  @Post()
+  @Post('users')
   @ApiResponse({
     status: 201,
     description: 'The user has been successfully created.',
@@ -44,7 +49,7 @@ export class AppController {
     return this.appService.createUser(createUserDto);
   }
 
-  @Get(':id')
+  @Get('users/:id')
   @ApiResponse({
     status: 200,
     description: 'The user has been retrieved successfully.',
@@ -54,7 +59,7 @@ export class AppController {
     return this.appService.getUser(id);
   }
 
-  @Patch(':id')
+  @Patch('users/:id')
   @ApiResponse({
     status: 200,
     description: 'The user has been successfully updated.',
@@ -64,7 +69,7 @@ export class AppController {
     return this.appService.updateUser(id, updateUserDto);
   }
 
-  @Delete(':id')
+  @Delete('users/:id')
   @ApiResponse({
     status: 200,
     description: 'The user has been successfully deleted.',
